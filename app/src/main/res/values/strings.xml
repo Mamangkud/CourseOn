@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">CourseOn</string>
+    <string-array name="auth">
+        <item>Guru</item>
+        <item>Murid</item>
+    </string-array>
+    <string-array name="nama_matpel">
+        <item>IPA</item>
+        <item>IPS</item>
+        <item>Matematika</item>
+        <item>Agama</item>
+        <item>B.ING</item>
+        <item>B.IND</item>
+    </string-array>
+    <string-array name="logo_matpel">
+        <item>@drawable/ipa</item>
+        <item>@drawable/ips</item>
+        <item>@drawable/matematika</item>
+        <item>@drawable/agama</item>
+        <item>@drawable/english</item>
+        <item>@drawable/indo</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

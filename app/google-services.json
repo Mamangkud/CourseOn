@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "471339440208",
+    "firebase_url": "https://courseon.firebaseio.com",
+    "project_id": "courseon",
+    "storage_bucket": "courseon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471339440208:android:da063e8683b8dcaac91955",
+        "android_client_info": {
+          "package_name": "com.dicoding.picodiploma.courseon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471339440208-1332c8cahoanqa2gs2uhh5bs5o67dp4m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dicoding.picodiploma.courseon",
+            "certificate_hash": "8090c2c891a356a6012a4d733f1c4edb0fead78b"
+          }
+        },
+        {
+          "client_id": "471339440208-4qfbajfm90noam3g5npc0qr5rus303ml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSf4nZZAU0Rz7JL7nyGl8TB98NRiNrnnI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "471339440208-4qfbajfm90noam3g5npc0qr5rus303ml.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
