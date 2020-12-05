@@ -1,11 +1,15 @@
 package com.dicoding.picodiploma.courseon
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_register.*
 
 class Register : AppCompatActivity(), View.OnClickListener {
@@ -22,6 +26,7 @@ class Register : AppCompatActivity(), View.OnClickListener {
 
         btn_register.setOnClickListener{
             signUpUser()
+
         }
         tv_login_here.setOnClickListener{
             startActivity(Intent(this, Login::class.java))
@@ -54,6 +59,8 @@ class Register : AppCompatActivity(), View.OnClickListener {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(this@Register, "User Created", Toast.LENGTH_SHORT).show()
+                    updateProfile()
+                    updateEmail()
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 } else {
@@ -65,5 +72,16 @@ class Register : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(p0: View?) {
         TODO("Not yet implemented")
+    }
+    private fun updateProfile() {
+
+        val user = mAuth.currentUser
+        val profileUpdates = UserProfileChangeRequest.Builder()
+            .setDisplayName(edt_nama.text.toString()).build()
+        user!!.updateProfile(profileUpdates)
+    }
+    private fun updateEmail() {
+        val user = mAuth.currentUser
+        user!!.updateEmail(edt_email.text.toString())
     }
 }
