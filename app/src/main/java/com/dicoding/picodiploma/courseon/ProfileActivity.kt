@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
@@ -19,6 +20,11 @@ class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Profile"
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bn_menu)
+        bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         mAuth = FirebaseAuth.getInstance()
 
         loadUserInformation()
@@ -39,6 +45,22 @@ class ProfileActivity : AppCompatActivity() {
 //                Toast.LENGTH_SHORT).show()
 //        }
 //    }
+private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    when (item.itemId) {
+        R.id.nav_home -> {
+            startActivity(Intent(applicationContext, MainActivity::class.java))
+            return@OnNavigationItemSelectedListener true
+        }
+        R.id.nav_profile -> {
+            return@OnNavigationItemSelectedListener true
+        }
+        R.id.nav_log -> {
+            startActivity(Intent(applicationContext, LihatLogActivity::class.java))
+            return@OnNavigationItemSelectedListener true
+        }
+    }
+    false
+}
     private fun loadUserInformation() {
         val user = mAuth.currentUser
         if (user?.uid != null)
@@ -49,5 +71,9 @@ class ProfileActivity : AppCompatActivity() {
         FirebaseAuth.getInstance().signOut()
         startActivity(Intent(this, Login::class.java))
         finish()
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

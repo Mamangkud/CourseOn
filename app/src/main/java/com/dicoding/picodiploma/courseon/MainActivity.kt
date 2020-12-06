@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         supportActionBar?.title = "Course On!"
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bn_menu)
-//        buttonNavigation.selectedItemId(R.id.)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         rvMatpel = findViewById(R.id.rv_matpel)
 
@@ -50,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.nav_log -> {
-                //intent
+                startActivity(Intent(applicationContext, LihatLogActivity::class.java))
                 return@OnNavigationItemSelectedListener true
             }
         }
