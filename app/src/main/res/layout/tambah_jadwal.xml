@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_marginTop="10dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/back"/>
+
+    <TextView
+        android:id="@+id/tv_TambahJadwal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Tambah Jadwal"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_pilihtanggal"
+            android:layout_marginTop="10dp"
+            android:text="Pilih Tanggal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/et_pilihtanggal"
+            android:layout_width="286dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/background_form"
+            android:drawableStart="@drawable/calendar"
+            android:drawableLeft="@drawable/calendar"
+            android:hint="   dd/mm/yy"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/tv_pilihwaktu"
+            android:layout_marginTop="20dp"
+            android:text="Pilih Waktu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/et_pilihwaktu"
+            android:layout_width="286dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/background_form"
+            android:drawableStart="@drawable/calendar"
+            android:drawableLeft="@drawable/calendar"
+            android:hint="   HH:mm"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/btn_TambahJadwal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="TAMBAH"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="8dp" />
+    </LinearLayout>
+</LinearLayout>
