@@ -3,6 +3,9 @@ package com.dicoding.picodiploma.courseon
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.ViewParent
+import android.widget.AdapterView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -18,19 +21,21 @@ class Login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         mAuth = FirebaseAuth.getInstance()
 
-        btn_login.setOnClickListener{
+        btn_login.setOnClickListener {
             doLogin()
         }
-
+        tv_register_here.setOnClickListener {
+            startActivity(Intent(applicationContext, Register::class.java))
+        }
     }
 
     private fun doLogin() {
-        if (edt_email.text.toString().isEmpty()){
+        if (edt_email.text.toString().isEmpty()) {
             edt_email.error = "Please enter email"
             edt_email.requestFocus()
             return
         }
-        if (edt_password.text.toString().isEmpty()){
+        if (edt_password.text.toString().isEmpty()) {
             edt_password.error = "Please enter password"
             edt_password.requestFocus()
             return
@@ -52,12 +57,14 @@ class Login : AppCompatActivity() {
         updateUI(currentUser)
     }
 
-    private fun updateUI(currentUser: FirebaseUser?){
-        if(currentUser != null){
+    private fun updateUI(currentUser: FirebaseUser?) {
+        if (currentUser != null) {
             startActivity(Intent(this, MainActivity::class.java))
-        }else{
-            Toast.makeText(baseContext, "Login failed",
-                Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(
+                baseContext, "Login failed",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 }

@@ -63,9 +63,10 @@ private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigatio
 }
     private fun loadUserInformation() {
         val user = mAuth.currentUser
-        if (user?.uid != null)
+        if (user?.uid != null) {
             tv_nama.text = user.displayName
             tv_email.text = user?.email
+        }
     }
     fun logout(view: View) {
         FirebaseAuth.getInstance().signOut()
