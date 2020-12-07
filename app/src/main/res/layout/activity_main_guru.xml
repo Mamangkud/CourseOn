@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".LihatLogActivity">
+    tools:context=".MainActivityGuru">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_log_pesanan"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background"
-        android:padding="8dp" />
+    <ImageView
+        android:id="@+id/img_add_matpel"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_baseline_add_circle_24"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bn_menu"
@@ -20,7 +21,7 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:background="#ffff"
-        app:menu="@menu/bottom_navigation"
+        app:itemIconTint="@color/bottom_nav_color"
         app:itemTextColor="@color/bottom_nav_color"
-        app:itemIconTint="@color/bottom_nav_color"/>
+        app:menu="@menu/bottom_navigation" />
 </RelativeLayout>

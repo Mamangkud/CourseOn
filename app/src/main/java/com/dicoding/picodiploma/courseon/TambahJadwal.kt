@@ -2,9 +2,11 @@ package com.dicoding.picodiploma.courseon
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fragment_konfirmasi_tambah_jadwal.*
 import kotlinx.android.synthetic.main.tambah_jadwal.*
 import java.util.*
@@ -12,8 +14,10 @@ import java.util.*
 class TambahJadwal : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
+        setContentView(R.layout.tambah_jadwal)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Tambah Jadwal"
         val c = Calendar.getInstance()
 
         et_pilihtanggal.setOnClickListener() {
@@ -46,11 +50,33 @@ class TambahJadwal : AppCompatActivity() {
             dialog.show(supportFragmentManager,"customDialog")
         }
 
+
         //val fragment = KonfirmasiTambahJadwal()
 
         //fragment.SubmitButton.setOnClickListener{
         //saveData()
         //}
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        when (item.itemId) {
+            R.id.nav_home -> {
+                startActivity(Intent(applicationContext, MainActivity::class.java))
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.nav_profile -> {
+                return@OnNavigationItemSelectedListener true
+                startActivity(Intent(applicationContext, ProfileActivity::class.java))
+            }
+            R.id.nav_log -> {
+                startActivity(Intent(applicationContext, LihatLogActivity::class.java))
+                return@OnNavigationItemSelectedListener true
+            }
+        }
+        true
     }
 
 //    private fun saveData() {

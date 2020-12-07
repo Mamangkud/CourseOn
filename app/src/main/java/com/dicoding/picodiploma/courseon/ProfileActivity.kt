@@ -59,7 +59,7 @@ private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigatio
             return@OnNavigationItemSelectedListener true
         }
     }
-    false
+    true
 }
     private fun loadUserInformation() {
         val user = mAuth.currentUser
