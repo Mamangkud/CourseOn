@@ -9,17 +9,19 @@ import android.widget.AdapterView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.edt_email
 import kotlinx.android.synthetic.main.activity_login.edt_password
 import kotlinx.android.synthetic.main.activity_register.*
 
 class Login : AppCompatActivity() {
-    private lateinit var mAuth: FirebaseAuth
+    val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        mAuth = FirebaseAuth.getInstance()
 
         btn_login.setOnClickListener {
             doLogin()
@@ -58,13 +60,30 @@ class Login : AppCompatActivity() {
     }
 
     private fun updateUI(currentUser: FirebaseUser?) {
-        if (currentUser != null) {
-            startActivity(Intent(this, MainActivity::class.java))
-        } else {
-            Toast.makeText(
-                baseContext, "Login failed",
-                Toast.LENGTH_SHORT
-            ).show()
+        val docRef = Firebase.firestore.collection("users").document(mAuth.uid.toString())
+//        val task: Task<DocumentSnapshot>? = null
+        docRef.get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                var document: DocumentSnapshot? = task?.result
+                if (document!!.exists()) {
+                    if (mAuth.currentUser != null) {
+                        if (document?.getString("role").toString() == "Guru") {
+                            startActivity(Intent(this, MainActivityGuru::class.java))
+                            finish()
+                        }
+                        if (document?.getString("role").toString() == "Murid") {
+                            startActivity(Intent(this, MainActivity::class.java))
+                            finish()
+                        }
+                    }
+                }
+            }
+            else {
+                Toast.makeText(
+                    baseContext, "Login failed",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
         }
     }
-}

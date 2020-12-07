@@ -13,7 +13,7 @@
         android:layout_height="90dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_baseline_add_circle_24"/>
+        android:src="@drawable/ic_baseline_add_circle_24" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bn_menu"
@@ -24,4 +24,14 @@
         app:itemIconTint="@color/bottom_nav_color"
         app:itemTextColor="@color/bottom_nav_color"
         app:menu="@menu/bottom_navigation" />
+
+    <ImageView
+        android:id="@+id/btn_logout"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_above="@+id/bn_menu"
+        android:layout_alignParentRight="true"
+        android:onClick="logout"
+        android:src="@drawable/logout"
+        android:text="LOGOUT" />
 </RelativeLayout>
