@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    app:cardCornerRadius="4dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#FFFFFF"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tv_nama_guru"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="8dp"
+            android:text="Nama Guru"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_tanggal_pesanan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_nama_guru"
+            android:layout_marginLeft="18dp"
+            android:text="Tanggal"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_waktu_pesanan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_tanggal_pesanan"
+            android:layout_marginLeft="18dp"
+            android:text="Waktu"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+
+<!--        <ImageView-->
+<!--            android:id="@+id/ib_cancel"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginRight="16dp"-->
+<!--            app:srcCompat="@drawable/ic_baseline_add_circle_24" />-->
+
+        <Button
+            android:id="@+id/btn_online"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Online"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            />
+
+        <Button
+            android:id="@+id/btn_offline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Offline"
+            android:layout_toLeftOf="@id/btn_online"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="8dp"
+            />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

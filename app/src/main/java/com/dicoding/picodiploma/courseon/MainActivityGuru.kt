@@ -12,6 +12,8 @@ class MainActivityGuru : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_guru)
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bn_menu)
+        bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
         img_add_matpel.setOnClickListener{
             startActivity(Intent(applicationContext, TambahJadwal::class.java))
@@ -20,7 +22,7 @@ class MainActivityGuru : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.nav_home -> {
-
+                startActivity(Intent(applicationContext, MainActivityGuru::class.java))
                 return@OnNavigationItemSelectedListener true
             }
             R.id.nav_profile -> {
