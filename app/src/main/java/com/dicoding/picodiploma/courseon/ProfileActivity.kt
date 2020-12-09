@@ -1,5 +1,6 @@
 package com.dicoding.picodiploma.courseon
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +12,10 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.activity_register.*
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var email: String
@@ -48,10 +53,17 @@ class ProfileActivity : AppCompatActivity() {
 private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
     when (item.itemId) {
         R.id.nav_home -> {
-            startActivity(Intent(applicationContext, MainActivity::class.java))
-            return@OnNavigationItemSelectedListener true
+            if (getRole(this).equals("Guru")) {
+                startActivity(Intent(this, MainActivityGuru::class.java))
+                return@OnNavigationItemSelectedListener true
+            } else if (getRole(this).equals("Murid")){
+                startActivity(Intent(applicationContext, MainActivity::class.java))
+                return@OnNavigationItemSelectedListener true
+            }
         }
         R.id.nav_profile -> {
+//            startActivity(Intent(applicationContext, ProfileActivity::class.java))
+
             return@OnNavigationItemSelectedListener true
         }
         R.id.nav_log -> {
@@ -76,5 +88,27 @@ private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigatio
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+    fun getRole(context: Context): String {
+        var role = ""
+        val docRef = Firebase.firestore.collection("users").document(mAuth.uid.toString())
+        docRef.get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                var document: DocumentSnapshot? = task?.result
+                if (document!!.exists()) {
+                    if (mAuth.currentUser != null) {
+                        if (document?.getString("role").toString() == "Guru") {
+                            role = "Guru"
+                            finish()
+                        }
+                        if (document?.getString("role").toString() == "Murid") {
+                            role = "Murid"
+                            finish()
+                        }
+                    }
+                }
+            }
+        }
+        return role
     }
 }

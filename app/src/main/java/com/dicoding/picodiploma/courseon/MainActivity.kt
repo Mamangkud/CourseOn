@@ -1,5 +1,6 @@
 package com.dicoding.picodiploma.courseon
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.TypedArray
 import androidx.appcompat.app.AppCompatActivity
@@ -39,22 +40,24 @@ class MainActivity : AppCompatActivity() {
         adapter = ItemAdapter(arrayList)
         rvMatpel.adapter = adapter
     }
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
-            R.id.nav_home -> {
-                return@OnNavigationItemSelectedListener true
+
+    private val mOnNavigationItemSelectedListener =
+        BottomNavigationView.OnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.nav_profile -> {
+                    startActivity(Intent(applicationContext, ProfileActivity::class.java))
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.nav_log -> {
+                    startActivity(Intent(applicationContext, LihatLogActivity::class.java))
+                    return@OnNavigationItemSelectedListener true
+                }
             }
-            R.id.nav_profile -> {
-                startActivity(Intent(applicationContext, ProfileActivity::class.java))
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.nav_log -> {
-                startActivity(Intent(applicationContext, LihatLogActivity::class.java))
-                return@OnNavigationItemSelectedListener true
-            }
+            false
         }
-        false
-    }
 
     private fun prepare() {
         dataName = resources.getStringArray(R.array.nama_matpel)
@@ -71,6 +74,8 @@ class MainActivity : AppCompatActivity() {
         }
         adapter.matpel = arrayList
     }
+
+
 }
 
 
