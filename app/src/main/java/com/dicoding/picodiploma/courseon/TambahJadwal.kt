@@ -137,8 +137,8 @@ class TambahJadwal : AppCompatActivity() {
             "waktu" to et_pilihwaktu.text.toString()
         )
 
-        db.collection("jadwal").document(user?.uid.toString())
-            .set(jadwal)
+        db.collection("jadwal")
+            .add(jadwal)
     }
 }
 

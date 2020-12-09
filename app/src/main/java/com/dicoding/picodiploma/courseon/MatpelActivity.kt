@@ -1,31 +1,26 @@
 package com.dicoding.picodiploma.courseon
 
-import android.content.ClipData
 import android.content.Context
 import android.content.Intent
-import android.content.res.TypedArray
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_matpel.*
 
 class MatpelActivity : AppCompatActivity() {
     private lateinit var rvGuru: RecyclerView
-    private lateinit var gridLayoutManager: GridLayoutManager
-    private var arrayList: ArrayList<GuruModel> = arrayListOf()
     private lateinit var adapter: GuruAdapter
-    private lateinit var guruName: Array<String>
-    private lateinit var tanggal: Array<String>
-    private lateinit var waktu: Array<String>
+    private lateinit var firebaseFirestore: FirebaseFirestore
+    private val db = FirebaseFirestore.getInstance()
+    private val collectionReference = db.collection("jadwal")
 
-    //    private lateinit var dataPhoto: TypedArray
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_matpel)
@@ -34,19 +29,30 @@ class MatpelActivity : AppCompatActivity() {
         supportActionBar?.title = "List Guru"
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bn_menu)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-
+        firebaseFirestore = FirebaseFirestore.getInstance()
         rvGuru = findViewById(R.id.rv_list_guru)
-
-        var layoutManager: RecyclerView.LayoutManager =
+//        if (resources.getStringArray(R.array.nama_matpel) ==
+        val matpel = intent.getStringExtra("EXTRA_MATPEL")
+        val query = collectionReference.whereEqualTo("matpel",matpel)
+        val options = FirestoreRecyclerOptions.Builder<GuruModel>()
+            .setQuery(query,GuruModel::class.java)
+            .build()
+        adapter = GuruAdapter(options)
+        rvGuru.layoutManager =
             LinearLayoutManager(this@MatpelActivity)
-        rvGuru.layoutManager = layoutManager
         rvGuru.setHasFixedSize(true)
-        adapter = GuruAdapter(arrayList)
         rvGuru.adapter = adapter
-        prepare()
-        addItem()
-        adapter = GuruAdapter(arrayList)
-        rvGuru.adapter = adapter
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        adapter!!.startListening()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        adapter!!.stopListening()
     }
 
     private val mOnNavigationItemSelectedListener =
@@ -71,29 +77,6 @@ class MatpelActivity : AppCompatActivity() {
             }
             false
         }
-
-    private fun prepare() {
-        val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
-        val docRef = Firebase.firestore.collection("jadwal")
-
-        //GANTI JADI NGAMBIL KE DB
-
-        guruName = resources.getStringArray(R.array.nama_matpel)
-        tanggal = resources.getStringArray(R.array.nama_matpel)
-        waktu = resources.getStringArray(R.array.nama_matpel)
-
-    }
-
-    private fun addItem() {
-        for (position in guruName.indices) {
-            val guru = GuruModel(
-                guruName[position], tanggal[position], waktu[position]
-            )
-            arrayList.add(guru)
-        }
-        adapter.guru = arrayList
-    }
-
     fun getRole(context: Context): String {
         val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
         var role = ""

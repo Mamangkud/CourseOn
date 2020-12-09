@@ -5,7 +5,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class GuruModel(
-    val name: String?,
+    val nama: String?,
     val tanggal: String?,
     val waktu: String?
-): Parcelable
+): Parcelable{
+    constructor() : this("","","")
+}
