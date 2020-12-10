@@ -13,4 +13,7 @@ data class PemesananModel(
     val tanggal: String?,
     val tipe_pemesanan: String?,
     val waktu: String?
-) : Parcelable
+) : Parcelable {
+    constructor() : this("","","", "",
+        "", "","","")
+}
