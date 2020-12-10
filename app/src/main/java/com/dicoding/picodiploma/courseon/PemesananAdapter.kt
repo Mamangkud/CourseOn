@@ -77,6 +77,9 @@ class PemesananAdapter(
 
         val builder = AlertDialog.Builder(mCtx)
         builder.setTitle("Konfirmasi Pembatalan")
+        val view = inflater.inflate(R.layout.fragment_pesan_online, null)
+
+//        builder.setView(view)
         builder.setPositiveButton("Ya") { dialogInterface, id ->
 //            db.collection("pemesanan").whereEqualTo("status", "Menunggu Konfirmasi")
 //                .set(hashMapOf("status" to "Dibatalkan"))
