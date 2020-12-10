@@ -12,21 +12,21 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="4dp"
-        android:textStyle="bold"
+        android:text="Apakah Anda Yakin?"
         android:textSize="20sp"
-        android:text="Apakah Anda Yakin?" />
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tv_nama_guru_pesanan"
+        android:id="@+id/tv_nama_guru_pesanan_offline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:textSize="20sp"
-        android:text="Nama Guru" />
+        android:text="Nama Guru"
+        android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/tv_tanggal"
+        android:id="@+id/tv_tanggal_offline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -35,7 +35,7 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/tv_matpel"
+        android:id="@+id/tv_matpel_offline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -44,12 +44,30 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/tv_waktu"
+        android:id="@+id/tv_waktu_offline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="4dp"
         android:text="Konfirmasi Tambah Jadwal"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_jenis_pemesanan_offline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:text="Offline"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/edt_alamat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="4dp"
+        android:hint="Masukan Alamat Anda"
         android:textSize="20sp" />
 
 </LinearLayout>
