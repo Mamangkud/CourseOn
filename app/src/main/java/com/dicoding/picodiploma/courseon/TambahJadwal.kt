@@ -16,6 +16,10 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_konfirmasi_tambah_jadwal.*
 import kotlinx.android.synthetic.main.fragment_konfirmasi_tambah_jadwal.view.*
+import kotlinx.android.synthetic.main.fragment_konfirmasi_tambah_jadwal.view.tv_matpel
+import kotlinx.android.synthetic.main.fragment_konfirmasi_tambah_jadwal.view.tv_tanggal
+import kotlinx.android.synthetic.main.fragment_konfirmasi_tambah_jadwal.view.tv_waktu
+import kotlinx.android.synthetic.main.fragment_pesan_online.view.*
 import kotlinx.android.synthetic.main.tambah_jadwal.*
 import java.util.*
 
@@ -86,19 +90,6 @@ class TambahJadwal : AppCompatActivity() {
             }
             builder.show()
 
-//            val b = Bundle()
-//            val teks_to_send = et_pilihtanggal.text.toString()
-//            val teks_to_send2= et_pilihwaktu.text.toString()
-//            val teks_to_send3= et_pilihmatpel.text.toString()
-//            b.putString("SENT_TEXT", teks_to_send)
-//            b.putString("SENT_TEXT2", teks_to_send2)
-//            b.putString("SENT_TEXT3", teks_to_send3)
-//            val dialog = FragmentKonfirmasiTambahJadwal()
-//            dialog.setArguments(b)
-//            dialog.show(supportFragmentManager,"customDialog")
-////            dialog.SubmitButton.setOnClickListener {
-////                saveData()
-////            }
         }
     }
 
