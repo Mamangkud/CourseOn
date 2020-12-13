@@ -38,18 +38,18 @@ class MatpelActivity : AppCompatActivity() {
         val matpel = intent.getStringExtra("EXTRA_MATPEL")
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "List Jadwal Guru "+ matpel
+        supportActionBar?.title = "List Jadwal Guru " + matpel
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bn_menu)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         firebaseFirestore = FirebaseFirestore.getInstance()
         rvGuru = findViewById(R.id.rv_list_guru)
 //        if (resources.getStringArray(R.array.nama_matpel) ==
 
-        val query = collectionReference.whereEqualTo("matpel",matpel)
+        val query = collectionReference.whereEqualTo("matpel", matpel)
         val options = FirestoreRecyclerOptions.Builder<GuruModel>()
-            .setQuery(query,GuruModel::class.java)
+            .setQuery(query, GuruModel::class.java)
             .build()
-        adapter = GuruAdapter(options,this, matpel)
+        adapter = GuruAdapter(options, this, matpel)
         rvGuru.layoutManager =
             LinearLayoutManager(this@MatpelActivity)
         rvGuru.setHasFixedSize(true)
@@ -86,13 +86,8 @@ class MatpelActivity : AppCompatActivity() {
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    if (getRole(this).equals("Guru")) {
-                        startActivity(Intent(this, MainActivityGuru::class.java))
-                        return@OnNavigationItemSelectedListener true
-                    } else if (getRole(this).equals("Murid")) {
-                        startActivity(Intent(applicationContext, MainActivity::class.java))
-                        return@OnNavigationItemSelectedListener true
-                    }
+                    startActivity(Intent(applicationContext, MainActivity::class.java))
+                    return@OnNavigationItemSelectedListener true
                 }
                 R.id.nav_profile -> {
                     startActivity(Intent(applicationContext, ProfileActivity::class.java))
@@ -104,29 +99,6 @@ class MatpelActivity : AppCompatActivity() {
             }
             false
         }
-    fun getRole(context: Context): String {
-        val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
-        var role = ""
-        val docRef = Firebase.firestore.collection("users").document(mAuth.uid.toString())
-        docRef.get().addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                var document: DocumentSnapshot? = task?.result
-                if (document!!.exists()) {
-                    if (mAuth.currentUser != null) {
-                        if (document?.getString("role").toString() == "Guru") {
-                            role = "Guru"
-                            finish()
-                        }
-                        if (document?.getString("role").toString() == "Murid") {
-                            role = "Murid"
-                            finish()
-                        }
-                    }
-                }
-            }
-        }
-        return role
-    }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()

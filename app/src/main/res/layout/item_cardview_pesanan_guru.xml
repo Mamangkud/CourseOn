@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    app:cardCornerRadius="4dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tv_nama_guru_log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_alignParentTop="true"
+            android:text="Nama Guru"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_mata_pelajaran_log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_nama_guru_log"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="4dp"
+            android:text="Mata pelajaran"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_tanggal_log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_mata_pelajaran_log"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="4dp"
+            android:text="Tanggal"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_waktu_log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_tanggal_log"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="4dp"
+            android:text="Waktu"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_status_log"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_alignParentRight="true"
+            android:text="Status"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:layout_marginRight="16dp"/>
+
+        <ImageView
+            android:id="@+id/ib_cancel_log"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            app:srcCompat="@drawable/ic_baseline_cancel_24" />
+
+        <ImageView
+            android:id="@+id/ib_konfirmasi_log"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:layout_toLeftOf="@id/ib_cancel_log"
+            app:srcCompat="@drawable/ic_baseline_check_circle_24" />
+
+        <ImageView
+            android:id="@+id/ib_selesai_log"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:layout_toLeftOf="@id/ib_konfirmasi_log"
+            app:srcCompat="@drawable/ic_baseline_save_alt_24" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
