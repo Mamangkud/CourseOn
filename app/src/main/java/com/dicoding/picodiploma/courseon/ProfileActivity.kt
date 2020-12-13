@@ -62,7 +62,7 @@ private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigatio
             }
         }
         R.id.nav_profile -> {
-            startActivity(Intent(applicationContext, ProfileActivity::class.java))
+//            startActivity(Intent(applicationContext, ProfileActivity::class.java))
             return@OnNavigationItemSelectedListener true
         }
         R.id.nav_log -> {

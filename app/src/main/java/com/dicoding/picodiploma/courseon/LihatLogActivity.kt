@@ -41,7 +41,7 @@ class LihatLogActivity : AppCompatActivity() {
         val query = collectionReference
             .whereEqualTo("nama_pemesan", namaPemesan)
             .orderBy("status", Query.Direction.DESCENDING)
-            .orderBy("tanggal", Query.Direction.ASCENDING)
+            .orderBy("tanggal", Query.Direction.DESCENDING)
 
 
         val options = FirestoreRecyclerOptions.Builder<PemesananModel>()
