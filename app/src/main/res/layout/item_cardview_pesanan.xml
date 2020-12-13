@@ -10,42 +10,55 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:background="#FFFFFF"
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/tv_nama_guru_pesanan"
+            android:id="@+id/tv_nama_guru_log"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
-            android:layout_marginTop="8dp"
+            android:layout_alignParentTop="true"
             android:text="Nama Guru"
             android:textColor="#000000"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/tv_mata_pelajaran"
+            android:id="@+id/tv_mata_pelajaran_log"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_nama_guru"
+            android:layout_below="@+id/tv_nama_guru_log"
             android:layout_marginLeft="18dp"
+            android:layout_marginTop="4dp"
             android:text="Mata pelajaran"
             android:textColor="#000000"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/tv_tanggal_pesanan"
+            android:id="@+id/tv_tanggal_log"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_mata_pelajaran"
+            android:layout_below="@id/tv_mata_pelajaran_log"
             android:layout_marginLeft="18dp"
+            android:layout_marginTop="4dp"
             android:text="Tanggal"
             android:textColor="#000000"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/tv_status_pesanan"
+            android:id="@+id/tv_waktu_log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_tanggal_log"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="4dp"
+            android:text="Waktu"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_status_log"
             android:layout_width="wrap_content"
             android:layout_height="29dp"
             android:layout_alignParentRight="true"
@@ -55,7 +68,7 @@
             android:layout_marginRight="16dp"/>
 
         <ImageView
-            android:id="@+id/ib_cancel"
+            android:id="@+id/ib_cancel_log"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
