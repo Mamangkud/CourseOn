@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationMenu
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var rvMatpel: RecyclerView
@@ -45,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
+                    startActivity(Intent(applicationContext, MainActivity::class.java))
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.nav_profile -> {
@@ -75,6 +79,29 @@ class MainActivity : AppCompatActivity() {
         adapter.matpel = arrayList
     }
 
+    fun getRole(context: Context): String {
+        val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
+        var role = ""
+        val docRef = Firebase.firestore.collection("users").document(mAuth.uid.toString())
+        docRef.get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                var document: DocumentSnapshot? = task?.result
+                if (document!!.exists()) {
+                    if (mAuth.currentUser != null) {
+                        if (document?.getString("role").toString() == "Guru") {
+                            role = "Guru"
+                            finish()
+                        }
+                        if (document?.getString("role").toString() == "Murid") {
+                            role = "Murid"
+                            finish()
+                        }
+                    }
+                }
+            }
+        }
+        return role
+    }
 
 }
 

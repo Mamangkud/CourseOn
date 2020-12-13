@@ -30,15 +30,15 @@ class MainActivityGuru : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.nav_log -> {
-                startActivity(Intent(applicationContext, LihatLogActivity::class.java))
+                startActivity(Intent(applicationContext, LihatLogGuruActivity::class.java))
                 return@OnNavigationItemSelectedListener true
             }
         }
         true
     }
-    fun logout(view: View) {
-        FirebaseAuth.getInstance().signOut()
-        startActivity(Intent(this, Login::class.java))
-        finish()
-    }
+//    fun logout(view: View) {
+//        FirebaseAuth.getInstance().signOut()
+//        startActivity(Intent(this, Login::class.java))
+//        finish()
+//    }
 }

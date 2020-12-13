@@ -25,17 +25,16 @@ import kotlinx.android.synthetic.main.item_cardview_pesanan.view.tv_waktu_log
 import kotlinx.android.synthetic.main.item_cardview_pesanan_guru.view.*
 
 
-class PemesananAdapter(
+class PemesananGuruAdapter(
     options: FirestoreRecyclerOptions<PemesananModel>,
     val mCtx: Context
 ) :
-    FirestoreRecyclerAdapter<PemesananModel, PemesananAdapter.PemesananAdapterVH>(options) {
+    FirestoreRecyclerAdapter<PemesananModel, PemesananGuruAdapter.PemesananAdapterVH>(options) {
     //    internal var guru = arrayListOf<GuruModel>()
     val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
     val builder = AlertDialog.Builder(mCtx)
     val inflater = LayoutInflater.from(mCtx)
     val db = Firebase.firestore
-    val pemesananId = ""
 
     class PemesananAdapterVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var nama = itemView.tv_nama_guru_log
@@ -44,29 +43,42 @@ class PemesananAdapter(
         var waktu = itemView.tv_waktu_log
         var status = itemView.tv_status_log
         var btnCancel = itemView.ib_cancel_log
+        var btnKonfirmasi = itemView.ib_konfirmasi_log
+        var btnSelesai = itemView.ib_selesai_log
     }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): PemesananAdapter.PemesananAdapterVH {
-        var viewHolder: PemesananAdapter
+    ): PemesananGuruAdapter.PemesananAdapterVH {
+        var viewHolder: PemesananGuruAdapter
+
         return PemesananAdapterVH(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_cardview_pesanan, parent, false)
+                .inflate(R.layout.item_cardview_pesanan_guru, parent, false)
         )
     }
 
     override fun onBindViewHolder(
-        holder: PemesananAdapter.PemesananAdapterVH,
+        holder: PemesananGuruAdapter.PemesananAdapterVH,
         position: Int,
         model: PemesananModel
     ) {
-        holder.nama.text = "Nama: " + model.nama
+        holder.nama.text = "Nama: " + model.nama_pemesan
         holder.matpel.text = "Matpel : " + model.matpel
         holder.tanggal.text = "Tanggal: " + model.tanggal
         holder.waktu.text = "Waktu: " + model.waktu
         holder.status.text = model.status
+
+        holder.btnKonfirmasi.setOnClickListener {
+            showDialogKonfirmasi(model)
+        }
+        holder.btnSelesai.setOnClickListener {
+            showDialogSelesai(model)
+        }
+        holder.btnCancel.setOnClickListener {
+            showDialogCancel(model)
+        }
     }
 
     private fun showDialogCancel(pemesanan: PemesananModel) {
@@ -77,12 +89,47 @@ class PemesananAdapter(
             db.collection("pemesanan").document(pemesanan.pesananId.toString())
                 .update("status", "Dibatalkan")
             Toast.makeText(mCtx, pemesanan.pesananId, Toast.LENGTH_LONG).show()
+            view.context.startActivity(Intent(mCtx, LihatLogGuruActivity::class.java))
 
-            view.context.startActivity(Intent(mCtx, LihatLogActivity::class.java))
         }
         builder.setNegativeButton("Tidak") { dialogInterface, id ->
         }
         val alert: AlertDialog = builder.create()
         alert.show()
     }
+
+    private fun showDialogKonfirmasi(pemesanan: PemesananModel) {
+        val builder = AlertDialog.Builder(mCtx)
+        builder.setTitle("Konfirmasi")
+        val view = inflater.inflate(R.layout.fragment_pesan_online, null)
+        builder.setPositiveButton("Ya") { dialogInterface, id ->
+            db.collection("pemesanan").document(pemesanan.pesananId.toString())
+                .update("status", "Dikonfirmasi")
+            Toast.makeText(mCtx, pemesanan.pesananId, Toast.LENGTH_LONG).show()
+            view.context.startActivity(Intent(mCtx, LihatLogGuruActivity::class.java))
+
+        }
+        builder.setNegativeButton("Tidak") { dialogInterface, id ->
+        }
+        val alert: AlertDialog = builder.create()
+        alert.show()
+    }
+
+    private fun showDialogSelesai(pemesanan: PemesananModel) {
+        val builder = AlertDialog.Builder(mCtx)
+        builder.setTitle("Konfirmasi Penyelesaian")
+        val view = inflater.inflate(R.layout.fragment_pesan_online, null)
+        builder.setPositiveButton("Ya") { dialogInterface, id ->
+            db.collection("pemesanan").document(pemesanan.pesananId.toString())
+                .update("status", "Selesai")
+            Toast.makeText(mCtx, pemesanan.pesananId, Toast.LENGTH_LONG).show()
+            view.context.startActivity(Intent(mCtx, LihatLogGuruActivity::class.java))
+        }
+        builder.setNegativeButton("Tidak") { dialogInterface, id ->
+        }
+        val alert: AlertDialog = builder.create()
+        alert.show()
+    }
+
+
 }

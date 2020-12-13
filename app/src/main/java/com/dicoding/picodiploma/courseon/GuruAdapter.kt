@@ -96,19 +96,20 @@ class GuruAdapter(
 //            saveData()
             val user = mAuth.currentUser
             val db = Firebase.firestore
+            val newPemesananRef = db.collection("pemesanan").document()
             val pemesanan = hashMapOf(
-                "Tipe Pemesanan" to "Offline",
+                "pesananId" to newPemesananRef.id,
                 "alamat_pemesanan" to etAlamat.text.toString(),
                 "matpel" to matpel,
                 "nama" to etNamaGuru.text.toString(),
                 "nama_pemesan" to user?.displayName.toString(),
                 "status" to "Menunggu Konfirmasi",
                 "tanggal" to etTanggal.text.toString(),
+                "Tipe Pemesanan" to "Offline",
                 "waktu" to etWaktu.text.toString()
             )
 
-            db.collection("pemesanan")
-                .add(pemesanan)
+            db.collection("pemesanan").document(newPemesananRef.id).set(pemesanan)
             Toast.makeText(mCtx, "Berhasil menambahkan jadwal", Toast.LENGTH_LONG).show()
 //            startActivity(view.context,Intent(mCtx,MainActivityGuru::class.java))
             view.context.startActivity(Intent(mCtx, LihatLogActivity::class.java))
@@ -136,19 +137,20 @@ class GuruAdapter(
 //            saveData()
             val user = mAuth.currentUser
             val db = Firebase.firestore
+            val newPemesananRef = db.collection("pemesanan").document()
             val pemesanan = hashMapOf(
-                "Tipe Pemesanan" to "Online",
+                "pesananId" to newPemesananRef.id,
                 "alamat_pemesanan" to "-",
                 "matpel" to matpel,
                 "nama" to etNamaGuru.text.toString(),
                 "nama_pemesan" to user?.displayName.toString(),
                 "status" to "Menunggu Konfirmasi",
                 "tanggal" to etTanggal.text.toString(),
+                "Tipe Pemesanan" to "Online",
                 "waktu" to etWaktu.text.toString()
             )
 
-            db.collection("pemesanan")
-                .add(pemesanan)
+            db.collection("pemesanan").document(newPemesananRef.id).set(pemesanan)
             Toast.makeText(mCtx, "Berhasil menambahkan jadwal", Toast.LENGTH_LONG).show()
 //            startActivity(view.context,Intent(mCtx,MainActivityGuru::class.java))
             view.context.startActivity(Intent(mCtx, LihatLogActivity::class.java))

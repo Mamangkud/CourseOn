@@ -111,7 +111,7 @@ class TambahJadwal : AppCompatActivity() {
 
                 }
                 R.id.nav_log -> {
-                    startActivity(Intent(applicationContext, LihatLogActivity::class.java))
+                    startActivity(Intent(applicationContext, LihatLogGuruActivity::class.java))
                     return@OnNavigationItemSelectedListener true
                 }
             }
