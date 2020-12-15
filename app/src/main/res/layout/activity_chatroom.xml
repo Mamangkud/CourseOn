@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.dicoding.picodiploma.courseon.Chatroom">
+    tools:context=".Chatroom">
+
+
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -45,5 +48,13 @@
             android:drawableLeft="@drawable/ic_baseline_send_24" />
 
     </LinearLayout>
-
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bn_menu"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="#ffff"
+        app:menu="@menu/bottom_navigation"
+        app:itemTextColor="@color/bottom_nav_color"
+        app:itemIconTint="@color/bottom_nav_color"/>
 </LinearLayout>

@@ -14,8 +14,11 @@ data class PemesananModel(
     val status: String?,
     val tanggal: String?,
     val tipe_pemesanan: String?,
-    val waktu: String?
+    val waktu: String?,
+    val priority: String?
 ) : Parcelable {
-    constructor() : this("","","", "",
-        "", "","","", "")
+    constructor() : this(
+        "", "", "", "",
+        "", "", "", "", "", ""
+    )
 }

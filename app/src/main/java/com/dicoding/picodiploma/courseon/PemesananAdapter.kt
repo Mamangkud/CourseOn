@@ -97,7 +97,9 @@ class PemesananAdapter(
         builder.setPositiveButton("Ya") { dialogInterface, id ->
             db.collection("pemesanan").document(pemesanan.pesananId.toString())
                 .update("status", "Dibatalkan")
-            Toast.makeText(mCtx, pemesanan.pesananId, Toast.LENGTH_LONG).show()
+            db.collection("pemesanan").document(pemesanan.pesananId.toString())
+                .update("priority", "9")
+            Toast.makeText(mCtx, "Pesanan berhasil dibatalkan", Toast.LENGTH_LONG).show()
 
             view.context.startActivity(Intent(mCtx, LihatLogActivity::class.java))
         }

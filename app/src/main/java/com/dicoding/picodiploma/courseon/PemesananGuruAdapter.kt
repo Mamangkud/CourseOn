@@ -42,7 +42,7 @@ class PemesananGuruAdapter(
         var tanggal = itemView.tv_tanggal_log
         var waktu = itemView.tv_waktu_log
         var status = itemView.tv_status_log
-        var tipe = itemView.tv_tipe_log
+        var tipe = itemView.tv_tipe_guru_log
         var btnCancel = itemView.ib_cancel_log
         var btnKonfirmasi = itemView.ib_konfirmasi_log
         var btnSelesai = itemView.ib_selesai_log
@@ -53,7 +53,6 @@ class PemesananGuruAdapter(
         viewType: Int
     ): PemesananGuruAdapter.PemesananAdapterVH {
         var viewHolder: PemesananGuruAdapter
-
         return PemesananAdapterVH(
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_cardview_pesanan_guru, parent, false)
@@ -72,6 +71,10 @@ class PemesananGuruAdapter(
         holder.tipe.text = "Tipe: " + model.tipe_pemesanan
         holder.status.text = model.status
 
+        holder.btnCancel.setVisibility(View.GONE)
+        holder.btnKonfirmasi.setVisibility(View.GONE)
+        holder.btnSelesai.setVisibility(View.GONE)
+
         holder.itemView.setOnClickListener {
             Toast.makeText(mCtx, model.tipe_pemesanan.toString(), Toast.LENGTH_SHORT).show()
             if (model.tipe_pemesanan.equals("Online") && model.status.equals("Dikonfirmasi")) {
@@ -79,25 +82,19 @@ class PemesananGuruAdapter(
             }
         }
         if (model.status.equals("Menunggu Konfirmasi")) {
+            holder.btnCancel.setVisibility(View.VISIBLE)
+            holder.btnKonfirmasi.setVisibility(View.VISIBLE)
             holder.btnCancel.setOnClickListener {
                 showDialogCancel(model)
             }
             holder.btnKonfirmasi.setOnClickListener {
                 showDialogKonfirmasi(model)
             }
+        } else if (model.status.equals("Dikonfirmasi")) {
+            holder.btnSelesai.setVisibility(View.VISIBLE)
             holder.btnSelesai.setOnClickListener {
                 showDialogSelesai(model)
             }
-            holder.btnCancel.setOnClickListener {
-                showDialogCancel(model)
-            }
-        }
-        if (model.status.equals("Dikonfirmasi")
-            || model.status.equals("Dibatalkan")
-            || model.status.equals("Selesai")
-        ) {
-            holder.btnCancel.setVisibility(View.GONE)
-
         }
 
     }
@@ -109,7 +106,9 @@ class PemesananGuruAdapter(
         builder.setPositiveButton("Ya") { dialogInterface, id ->
             db.collection("pemesanan").document(pemesanan.pesananId.toString())
                 .update("status", "Dibatalkan")
-            Toast.makeText(mCtx, pemesanan.pesananId, Toast.LENGTH_LONG).show()
+            db.collection("pemesanan").document(pemesanan.pesananId.toString())
+                .update("priority", "9")
+            Toast.makeText(mCtx, "Pesanan berhasil dibatalkan", Toast.LENGTH_LONG).show()
             view.context.startActivity(Intent(mCtx, LihatLogGuruActivity::class.java))
 
         }
@@ -126,7 +125,9 @@ class PemesananGuruAdapter(
         builder.setPositiveButton("Ya") { dialogInterface, id ->
             db.collection("pemesanan").document(pemesanan.pesananId.toString())
                 .update("status", "Dikonfirmasi")
-            Toast.makeText(mCtx, pemesanan.pesananId, Toast.LENGTH_LONG).show()
+            db.collection("pemesanan").document(pemesanan.pesananId.toString())
+                .update("priority", "2")
+            Toast.makeText(mCtx, "Pesanan berhasil dikonfirmasi", Toast.LENGTH_LONG).show()
             view.context.startActivity(Intent(mCtx, LihatLogGuruActivity::class.java))
 
         }
@@ -143,7 +144,9 @@ class PemesananGuruAdapter(
         builder.setPositiveButton("Ya") { dialogInterface, id ->
             db.collection("pemesanan").document(pemesanan.pesananId.toString())
                 .update("status", "Selesai")
-            Toast.makeText(mCtx, pemesanan.pesananId, Toast.LENGTH_LONG).show()
+            db.collection("pemesanan").document(pemesanan.pesananId.toString())
+                .update("priority", "3")
+            Toast.makeText(mCtx, "Pesanan berhasil diselesaikan", Toast.LENGTH_LONG).show()
             view.context.startActivity(Intent(mCtx, LihatLogGuruActivity::class.java))
         }
         builder.setNegativeButton("Tidak") { dialogInterface, id ->

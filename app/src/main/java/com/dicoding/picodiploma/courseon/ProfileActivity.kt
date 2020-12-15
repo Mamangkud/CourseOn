@@ -18,9 +18,9 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class ProfileActivity : AppCompatActivity() {
-    private lateinit var email: String
-    private lateinit var password: String
-    private lateinit var database: FirebaseDatabase
+//    private lateinit var email: String
+//    private lateinit var password: String
+//    private lateinit var database: FirebaseDatabase
     private lateinit var mAuth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
