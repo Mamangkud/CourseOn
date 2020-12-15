@@ -67,6 +67,13 @@ class PemesananAdapter(
         holder.tanggal.text = "Tanggal: " + model.tanggal
         holder.waktu.text = "Waktu: " + model.waktu
         holder.status.text = model.status
+
+        holder.itemView.setOnClickListener {
+            mCtx.startActivity(Intent(mCtx, Chatroom::class.java))
+        }
+        holder.btnCancel.setOnClickListener {
+            showDialogCancel(model)
+        }
     }
 
     private fun showDialogCancel(pemesanan: PemesananModel) {

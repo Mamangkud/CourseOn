@@ -22,7 +22,7 @@ class MainActivityGuru : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.nav_home -> {
-                startActivity(Intent(applicationContext, MainActivityGuru::class.java))
+//                startActivity(Intent(applicationContext, MainActivityGuru::class.java))
                 return@OnNavigationItemSelectedListener true
             }
             R.id.nav_profile -> {

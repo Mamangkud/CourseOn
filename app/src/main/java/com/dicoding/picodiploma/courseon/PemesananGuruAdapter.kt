@@ -70,6 +70,9 @@ class PemesananGuruAdapter(
         holder.waktu.text = "Waktu: " + model.waktu
         holder.status.text = model.status
 
+        holder.itemView.setOnClickListener {
+            mCtx.startActivity(Intent(mCtx, Chatroom::class.java))
+        }
         holder.btnKonfirmasi.setOnClickListener {
             showDialogKonfirmasi(model)
         }

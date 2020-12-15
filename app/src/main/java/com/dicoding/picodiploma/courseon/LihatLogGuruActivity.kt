@@ -73,7 +73,7 @@ class LihatLogGuruActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.nav_log -> {
-                startActivity(Intent(applicationContext, LihatLogGuruActivity::class.java))
+//                startActivity(Intent(applicationContext, LihatLogGuruActivity::class.java))
                 return@OnNavigationItemSelectedListener true
             }
         }
