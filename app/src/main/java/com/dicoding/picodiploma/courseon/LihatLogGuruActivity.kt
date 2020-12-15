@@ -39,8 +39,9 @@ class LihatLogGuruActivity : AppCompatActivity() {
         rvPesanan = findViewById(R.id.rv_log_pesanan)
         val query = collectionReference
             .whereEqualTo("nama", nama)
-            .orderBy("status", Query.Direction.DESCENDING)
+            .orderBy("priority", Query.Direction.ASCENDING)
             .orderBy("tanggal", Query.Direction.ASCENDING)
+
 
 
         val options = FirestoreRecyclerOptions.Builder<PemesananModel>()

@@ -106,7 +106,8 @@ class GuruAdapter(
                 "status" to "Menunggu Konfirmasi",
                 "tanggal" to etTanggal.text.toString(),
                 "tipe_pemesanan" to "Offline",
-                "waktu" to etWaktu.text.toString()
+                "waktu" to etWaktu.text.toString(),
+                "priority" to "1"
             )
 
             db.collection("pemesanan").document(newPemesananRef.id).set(pemesanan)
@@ -147,7 +148,8 @@ class GuruAdapter(
                 "status" to "Menunggu Konfirmasi",
                 "tanggal" to etTanggal.text.toString(),
                 "tipe_pemesanan" to "Online",
-                "waktu" to etWaktu.text.toString()
+                "waktu" to etWaktu.text.toString(),
+                "priority" to "1"
             )
 
             db.collection("pemesanan").document(newPemesananRef.id).set(pemesanan)
