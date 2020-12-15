@@ -67,29 +67,41 @@ class TambahJadwal : AppCompatActivity() {
             ).show()
         }
 
+
         btn_TambahJadwal.setOnClickListener {
             val tanggal = et_pilihtanggal.text.toString()
             val waktu = et_pilihwaktu.text.toString()
             val matpel = et_pilihmatpel.text.toString()
             val builder = AlertDialog.Builder(this)
-            val inflater = layoutInflater
-            builder.setTitle("Konfirmasi Jadwal")
-            val dialogLayout = inflater.inflate(R.layout.fragment_konfirmasi_tambah_jadwal, null)
+            if (et_pilihtanggal.text.toString().isEmpty()) {
+                et_pilihtanggal.error = "Masukkan tanggal"
+                et_pilihtanggal.requestFocus()
+            } else if (et_pilihwaktu.text.toString().isEmpty()) {
+                et_pilihwaktu.error = "Masukkan waktu"
+                et_pilihwaktu.requestFocus()
+            } else if (et_pilihmatpel.text.toString().isEmpty()) {
+                et_pilihmatpel.error = "Masukkan matpel"
+                et_pilihmatpel.requestFocus()
+            } else {
+                val inflater = layoutInflater
+                builder.setTitle("Konfirmasi Jadwal")
+                val dialogLayout =
+                    inflater.inflate(R.layout.fragment_konfirmasi_tambah_jadwal, null)
 
-            builder.setView(dialogLayout)
-            dialogLayout.tv_tanggal.text = "Tanggal : " + tanggal
-            dialogLayout.tv_waktu.text =   "Waktu   : " + waktu
-            dialogLayout.tv_matpel.text =  "Matpel  : " + matpel
+                builder.setView(dialogLayout)
+                dialogLayout.tv_tanggal.text = "Tanggal : " + tanggal
+                dialogLayout.tv_waktu.text = "Waktu   : " + waktu
+                dialogLayout.tv_matpel.text = "Matpel  : " + matpel
 
-            builder.setPositiveButton("SIMPAN") { dialogInterface, id ->
-                saveData()
-                Toast.makeText(this, "Berhasil menambahkan jadwal", Toast.LENGTH_LONG).show()
-                startActivity(Intent(applicationContext, MainActivityGuru::class.java))
+                builder.setPositiveButton("SIMPAN") { dialogInterface, id ->
+                    saveData()
+                    Toast.makeText(this, "Berhasil menambahkan jadwal", Toast.LENGTH_LONG).show()
+                    startActivity(Intent(applicationContext, MainActivityGuru::class.java))
+                }
+                builder.setNegativeButton("Batalkan") { dialogInterface, id ->
+                }
+                builder.show()
             }
-            builder.setNegativeButton("Batalkan") { dialogInterface, id ->
-            }
-            builder.show()
-
         }
     }
 
