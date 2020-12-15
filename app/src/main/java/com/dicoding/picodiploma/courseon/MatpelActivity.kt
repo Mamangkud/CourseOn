@@ -50,11 +50,12 @@ class MatpelActivity : AppCompatActivity() {
             .setQuery(query, GuruModel::class.java)
             .build()
         adapter = GuruAdapter(options, this, matpel)
+
         rvGuru.layoutManager =
             LinearLayoutManager(this@MatpelActivity)
         rvGuru.setHasFixedSize(true)
         rvGuru.adapter = adapter
-
+        rvGuru.adapter!!.notifyDataSetChanged()
     }
 
 //    private fun saveData() {

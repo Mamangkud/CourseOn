@@ -53,6 +53,7 @@ class LihatLogActivity : AppCompatActivity() {
             LinearLayoutManager(this@LihatLogActivity)
         rvPesanan.setHasFixedSize(true)
         rvPesanan.adapter = adapter
+        rvPesanan.adapter!!.notifyDataSetChanged()
     }
 
     override fun onStart() {
