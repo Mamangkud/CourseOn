@@ -105,7 +105,7 @@ class GuruAdapter(
                 "nama_pemesan" to user?.displayName.toString(),
                 "status" to "Menunggu Konfirmasi",
                 "tanggal" to etTanggal.text.toString(),
-                "Tipe Pemesanan" to "Offline",
+                "tipe_pemesanan" to "Offline",
                 "waktu" to etWaktu.text.toString()
             )
 
@@ -146,7 +146,7 @@ class GuruAdapter(
                 "nama_pemesan" to user?.displayName.toString(),
                 "status" to "Menunggu Konfirmasi",
                 "tanggal" to etTanggal.text.toString(),
-                "Tipe Pemesanan" to "Online",
+                "tipe_pemesanan" to "Online",
                 "waktu" to etWaktu.text.toString()
             )
 

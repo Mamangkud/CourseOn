@@ -42,6 +42,7 @@ class PemesananGuruAdapter(
         var tanggal = itemView.tv_tanggal_log
         var waktu = itemView.tv_waktu_log
         var status = itemView.tv_status_log
+        var tipe = itemView.tv_tipe_log
         var btnCancel = itemView.ib_cancel_log
         var btnKonfirmasi = itemView.ib_konfirmasi_log
         var btnSelesai = itemView.ib_selesai_log
@@ -68,20 +69,37 @@ class PemesananGuruAdapter(
         holder.matpel.text = "Matpel : " + model.matpel
         holder.tanggal.text = "Tanggal: " + model.tanggal
         holder.waktu.text = "Waktu: " + model.waktu
+        holder.tipe.text = "Tipe: " + model.tipe_pemesanan
         holder.status.text = model.status
 
         holder.itemView.setOnClickListener {
-            mCtx.startActivity(Intent(mCtx, Chatroom::class.java))
+            Toast.makeText(mCtx, model.tipe_pemesanan.toString(), Toast.LENGTH_SHORT).show()
+            if (model.tipe_pemesanan.equals("Online") && model.status.equals("Dikonfirmasi")) {
+                mCtx.startActivity(Intent(mCtx, Chatroom::class.java))
+            }
         }
-        holder.btnKonfirmasi.setOnClickListener {
-            showDialogKonfirmasi(model)
+        if (model.status.equals("Menunggu Konfirmasi")) {
+            holder.btnCancel.setOnClickListener {
+                showDialogCancel(model)
+            }
+            holder.btnKonfirmasi.setOnClickListener {
+                showDialogKonfirmasi(model)
+            }
+            holder.btnSelesai.setOnClickListener {
+                showDialogSelesai(model)
+            }
+            holder.btnCancel.setOnClickListener {
+                showDialogCancel(model)
+            }
         }
-        holder.btnSelesai.setOnClickListener {
-            showDialogSelesai(model)
+        if (model.status.equals("Dikonfirmasi")
+            || model.status.equals("Dibatalkan")
+            || model.status.equals("Selesai")
+        ) {
+            holder.btnCancel.setVisibility(View.GONE)
+
         }
-        holder.btnCancel.setOnClickListener {
-            showDialogCancel(model)
-        }
+
     }
 
     private fun showDialogCancel(pemesanan: PemesananModel) {

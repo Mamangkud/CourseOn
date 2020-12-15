@@ -58,6 +58,17 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/tv_tipe_log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_waktu_log"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="4dp"
+            android:text="Tipe"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
             android:id="@+id/tv_status_log"
             android:layout_width="wrap_content"
             android:layout_height="29dp"
