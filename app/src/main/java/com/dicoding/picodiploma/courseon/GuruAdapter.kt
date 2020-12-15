@@ -53,6 +53,13 @@ class GuruAdapter(
         var btnOffline = itemView.btn_offline
     }
 
+    override fun onDataChanged() {
+        super.onDataChanged()
+
+        if (itemCount == 0) {
+            Toast.makeText(mCtx, "Tidak ada guru yang tersedia", Toast.LENGTH_LONG).show()
+        }
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GuruAdapterVH {
         return GuruAdapterVH(
             LayoutInflater.from(parent.context).inflate(R.layout.item_cardview_guru, parent, false)
