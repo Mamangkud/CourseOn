@@ -57,7 +57,7 @@ class GuruAdapter(
         super.onDataChanged()
 
         if (itemCount == 0) {
-            Toast.makeText(mCtx, "Tidak ada guru yang tersedia", Toast.LENGTH_LONG).show()
+            Toast.makeText(mCtx, "Guru tidak tersedia", Toast.LENGTH_LONG).show()
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GuruAdapterVH {
