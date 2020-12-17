@@ -7,14 +7,14 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class PemesananModel(
     val pesananId: String?,
-    val alamat_pemesanan: String?,
-    val matpel: String,
-    val nama: String?,
+    var alamat_pemesanan: String?,
+    var matpel: String,
+    var nama: String?,
     val nama_pemesan: String?,
     val status: String?,
-    val tanggal: String?,
+    var tanggal: String?,
     val tipe_pemesanan: String?,
-    val waktu: String?,
+    var waktu: String?,
     val priority: String?
 ) : Parcelable {
     constructor() : this(

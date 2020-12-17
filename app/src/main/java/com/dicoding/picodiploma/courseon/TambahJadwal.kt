@@ -25,6 +25,7 @@ import java.util.*
 
 class TambahJadwal : AppCompatActivity() {
     val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    val user = mAuth.currentUser
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.tambah_jadwal)
@@ -94,7 +95,7 @@ class TambahJadwal : AppCompatActivity() {
                 dialogLayout.tv_matpel.text = "Matpel  : " + matpel
 
                 builder.setPositiveButton("SIMPAN") { dialogInterface, id ->
-                    saveData()
+                    saveData(user?.displayName.toString(),et_pilihmatpel.text.toString(), et_pilihtanggal.text.toString(),et_pilihwaktu.text.toString())
                     Toast.makeText(this, "Berhasil menambahkan jadwal", Toast.LENGTH_LONG).show()
                     startActivity(Intent(applicationContext, MainActivityGuru::class.java))
                 }
@@ -130,44 +131,17 @@ class TambahJadwal : AppCompatActivity() {
             true
         }
 
-    private fun saveData() {
-        val user = mAuth.currentUser
+    fun saveData(nama: String, matpel: String, tanggal: String, waktu: String) {
+
         val db = Firebase.firestore
         val jadwal = hashMapOf(
-            "matpel" to et_pilihmatpel.text.toString(),
-            "nama" to user?.displayName.toString(),
-            "tanggal" to et_pilihtanggal.text.toString(),
-            "waktu" to et_pilihwaktu.text.toString()
+            "matpel" to matpel,
+            "nama" to nama,
+            "tanggal" to tanggal,
+            "waktu" to waktu
         )
 
         db.collection("jadwal")
             .add(jadwal)
     }
 }
-
-//    private fun saveData() {
-//        val tanggal = et_pilihtanggal.text.toString().trim()
-//        val waktu = et_pilihwaktu.text.toString()
-//
-//        if (tanggal.isEmpty()){
-//            et_pilihtanggal.error = "Silahkan pilih tanggal terlebih dahulu"
-//        }
-//
-//        if(waktu.isEmpty()){
-//            et_pilihwaktu.error = "Silahkan pilih waktu terlebih dahulu"
-//        }
-
-//if(waktu == TambahJadwal(waktu)){
-//et_pilihwaktu.error = "Waktu sudah tersedia"
-//}
-
-//val ref = FirebaseDatabase.getInstance().getReference("Tambah Jadwal")
-//val jadwalId = ref.push().key
-
-//val tambahJadwal = TambahJadwal(jadwalId, tanggal, waktu)
-
-//if(jadwalId != null){
-//ref.child(jadwalId).setValue(tambahJadwal).addOnCompleteListener{
-//Toast.makeText(applicationContext, "Jadwal berhasil ditambahkan", Toast.LENGTH_SHORT).show()
-//}
-//}
