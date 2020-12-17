@@ -48,6 +48,13 @@ class PemesananGuruAdapter(
         var btnSelesai = itemView.ib_selesai_log
     }
 
+    override fun onDataChanged() {
+        super.onDataChanged()
+
+        if (itemCount == 0) {
+            Toast.makeText(mCtx, "Belum ada pesanan", Toast.LENGTH_LONG).show()
+        }
+    }
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -98,13 +105,7 @@ class PemesananGuruAdapter(
         }
 
     }
-    override fun onDataChanged() {
-        super.onDataChanged()
 
-        if (itemCount == 0) {
-            Toast.makeText(mCtx, "Belum ada pesanan", Toast.LENGTH_LONG).show()
-        }
-    }
     private fun showDialogCancel(pemesanan: PemesananModel) {
         val builder = AlertDialog.Builder(mCtx)
         builder.setTitle("Konfirmasi Pembatalan")

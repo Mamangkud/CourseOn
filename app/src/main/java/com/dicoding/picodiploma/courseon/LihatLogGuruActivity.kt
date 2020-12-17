@@ -43,7 +43,6 @@ class LihatLogGuruActivity : AppCompatActivity() {
             .orderBy("tanggal", Query.Direction.ASCENDING)
 
 
-
         val options = FirestoreRecyclerOptions.Builder<PemesananModel>()
             .setQuery(query,PemesananModel::class.java)
             .build()
